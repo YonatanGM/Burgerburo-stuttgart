@@ -17,7 +17,7 @@ test('Bürgerbüro zur EINARBEITUNG und AUSBILDUNG / EAB (Eberhardstr. 39 Warter
   const count = await locator.count();
   console.log(count);
   if (count > 0) {
-    let date = new Date().toISOString();
+    // let date = new Date().toISOString();
     // await october_dates.screenshot({ path: `./Found_Dates/${office.replace(/[^\w\s\']|_/g, "")
     // .replace(/\s+/g, " ")}/${date}.png` });
     await expect(october_dates).toHaveScreenshot();

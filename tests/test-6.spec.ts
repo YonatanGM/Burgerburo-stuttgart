@@ -17,9 +17,10 @@ test('Bürgerbüro VAIHINGEN (Rathausplatz 1)', async ({ page }) => {
   const count = await locator.count();
   console.log(count);
   if (count > 0) {
-    let date = new Date().toISOString();
-    await october_dates.screenshot({ path: `./Found_Dates/${office.replace(/[^\w\s\']|_/g, "")
-    .replace(/\s+/g, " ")}/${date}.png` });
+    // let date = new Date().toISOString();
+    // await october_dates.screenshot({ path: `./Found_Dates/${office.replace(/[^\w\s\']|_/g, "")
+    // .replace(/\s+/g, " ")}/${date}.png` });
+    await expect(october_dates).toHaveScreenshot();
   }
 
   await expect(locator).not.toHaveCount(0);
