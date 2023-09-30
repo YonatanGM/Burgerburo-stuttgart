@@ -36,8 +36,8 @@ test('Bürgerbüro zur EINARBEITUNG und AUSBILDUNG / EAB (Eberhardstr. 39 Warter
  
     const found_dates = await locator.allInnerTexts();
     let earliest_date = Math.min(...found_dates.map((s) => +s));
-
-    if (earliest_date < 31) {
+    console.log(earliest_date)
+    if (earliest_date < 10) {
 
       // send email here 
       // Send the email using the transport and the mail options
