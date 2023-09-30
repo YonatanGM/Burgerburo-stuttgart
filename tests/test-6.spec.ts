@@ -32,7 +32,7 @@ test('Bürgerbüro VAIHINGEN (Rathausplatz 1)', async ({ page }) => {
     const found_dates = await locator.allInnerTexts();
     let earliest_date = Math.min(...found_dates.map((s) => +s));
 
-    if (earliest_date < 15) {
+    if (earliest_date < 31) {
 
       // send email here 
       // Send the email using the transport and the mail options
@@ -40,7 +40,7 @@ test('Bürgerbüro VAIHINGEN (Rathausplatz 1)', async ({ page }) => {
       sendSmtpEmail.htmlContent = await october_dates.innerHTML();
       // console.log();
       await apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
-        // console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+        console.log('API called successfully. Returned data: ' + JSON.stringify(data));
       }, function (error) {
         console.error(error);
       });
