@@ -10,5 +10,10 @@
   "devDependencies": {
     "@playwright/test": "^1.38.1",
     "@types/node": "^20.7.1"
+  },
+  "dependencies": {
+    "@getbrevo/brevo": "^1.0.1",
+    "nodemailer": "^6.9.5",
+    "sib-api-v3-sdk": "^8.5.0"
   }
 }
