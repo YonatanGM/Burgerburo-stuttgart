@@ -22,8 +22,8 @@ test('Bürgerbüro zur EINARBEITUNG und AUSBILDUNG / EAB (Eberhardstr. 39 Warter
   await page.getByText('Ausweisdokumente Wird am Standort nicht angeboten').click();
   await page.getByText('Adressänderung auf Personalausweis / Wohnortänderung im Reisepass (nach Wohnsitz').click();
   await page.getByRole('button', { name: 'Zur Terminauswahl' }).click();
-  await page.getByTitle('Vor>').click();
-
+  // await page.getByTitle('Vor>').click();
+  await page.getByTitle('<zurück').click();
   const october_dates = page.getByText('<zurückVor>Oktober 2023MoDiMiDoFrSaSo')
   // need a screenshot for some reason 
   await october_dates.screenshot({ path: 'screenshot.png' });

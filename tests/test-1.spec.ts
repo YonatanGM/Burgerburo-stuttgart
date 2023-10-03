@@ -18,8 +18,8 @@ test('Bürgerbüro BAD CANNSTATT (Marktplatz 10', async ({ page }) => {
   await page.getByText('Ausweisdokumente Wird am Standort nicht angeboten').click();
   await page.locator('#service-row-67').click();
   await page.getByRole('button', { name: 'Zur Terminauswahl' }).click();
-  await page.getByTitle('Vor>').click();
-
+  // await page.getByTitle('Vor>').click();
+  await page.getByTitle('<zurück').click();
   const office = 'Bürgerbüro BAD CANNSTATT (Marktplatz 10';
   const october_dates = page.getByText('<zurückVor>Oktober 2023MoDiMiDoFrSaSo')
   // need a screenshot for some reason 
