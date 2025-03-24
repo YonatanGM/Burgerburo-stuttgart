@@ -3,7 +3,7 @@ const brevo = require('@getbrevo/brevo');
 let defaultClient = brevo.ApiClient.instance;
 
 let apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
+apiKey.apiKey = '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';
 
 let apiInstance = new brevo.TransactionalEmailsApi();
 let sendSmtpEmail = new brevo.SendSmtpEmail();
@@ -21,20 +21,53 @@ test('Bürgerbüro SÜD (Jella-Lepman-Str. 3)', async ({ page }) => {
   // await page.getByTitle('Vor>').click();
   await page.getByTitle('<zurück').click();
   const office = 'Bürgerbüro SÜD (Jella-Lepman-Str. 3)';
-  const october_dates = page.getByText('<zurückVor>Oktober 2023MoDiMiDoFrSaSo')
-  // need a screenshot for some reason 
+  const aprilDatesText = '<zurückVor>April 2025MoDiMiDoFrSaSo';
+
+  async function ensureAprilIsVisible(page) {
+    if (await page.getByText(aprilDatesText).isVisible()) {
+      console.log('April already visible!');
+      return;
+    }
+
+    // Check forward navigation
+    await page.getByTitle('Vor>').click();
+    await page.waitForTimeout(500); // or better: page.waitForLoadState('networkidle')
+
+    if (await page.getByText(aprilDatesText).isVisible()) {
+      console.log('April found after clicking forward.');
+      return;
+    }
+
+    // April still not visible, click back instead
+    await page.getByTitle('<zurück').click();
+    await page.getByTitle('<zurück').click(); // twice because we previously moved forward once
+    await page.waitForTimeout(500);
+
+    if (await page.getByText(aprilDatesText).isVisible()) {
+      console.log('April found after clicking backward.');
+      return;
+    }
+
+    throw new Error('April dates not found even after navigating forward and backward.');
+  }
+
+// Call this helper function before continuing:
+  await ensureAprilIsVisible(page);
+
+  const october_dates = page.getByText(aprilDatesText);
+  // need a screenshot for some reason
   await october_dates.screenshot({ path: 'screenshot.png' });
- 
+
   const locator = october_dates.getByRole('link');
   const count = await locator.count();
   if (count > 0) {
- 
+
     const found_dates = await locator.allInnerTexts();
     let earliest_date = Math.min(...found_dates.map((s) => +s));
 
     if (earliest_date < 10) {
 
-      // send email here 
+      // send email here
       // Send the email using the transport and the mail options
       sendSmtpEmail.subject = `Ausländerbehörde (${office}) found dates`;
       sendSmtpEmail.htmlContent = await october_dates.innerHTML();
