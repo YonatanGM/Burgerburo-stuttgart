@@ -9,7 +9,8 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.38.1",
-    "@types/node": "^20.7.1"
+    "@types/node": "^20.7.1",
+    "dotenv": "^16.4.7"
   },
   "dependencies": {
     "@getbrevo/brevo": "^1.0.1",

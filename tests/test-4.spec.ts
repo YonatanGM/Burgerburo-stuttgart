@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
+require('dotenv').config();       // only for local development
 const brevo = require('@getbrevo/brevo');
 let defaultClient = brevo.ApiClient.instance;
 
 let apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
+apiKey.apiKey = process.env.BREVO_API_KEY;
 
 let apiInstance = new brevo.TransactionalEmailsApi();
 let sendSmtpEmail = new brevo.SendSmtpEmail();
