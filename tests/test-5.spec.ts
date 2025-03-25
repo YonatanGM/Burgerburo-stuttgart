@@ -4,7 +4,7 @@ const brevo = require('@getbrevo/brevo');
 let defaultClient = brevo.ApiClient.instance;
 
 let apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
+apiKey.apiKey = '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';
 
 let apiInstance = new brevo.TransactionalEmailsApi();
 let sendSmtpEmail = new brevo.SendSmtpEmail();
